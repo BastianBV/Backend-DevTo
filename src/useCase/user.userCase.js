@@ -14,16 +14,31 @@ const user = async(userId) =>{
   return userFound
 }
 
+const userGeneral = async(user)=>{
+  const users = await User.find(user)
+  return users
+}
+
 const userPut = async(iduserUpdated,bodyuserUpdated)=>{
   const hashpassword= await bcrypt.hash(bodyuserUpdated.password, 10)
 
-  const userUpdate = await User.findByIdAndUpdate(iduserUpdated,bodyuserUpdated,{returnDocument:"after",password: hashpassword})
-  
+  // const userUpdate = await User.findByIdAndUpdate(iduserUpdated,bodyuserUpdated,{returnDocument:"after",password: hashpassword})
+  const userUpdate = await User.findByIdAndUpdate(iduserUpdated,{...bodyuserUpdated, password: hashpassword},{returnDocument:"after"})
+
   return userUpdate
+}
+
+const userDelete = async(iduserDelete)=>{
+
+  const userDel = await User.findByIdAndDelete(iduserDelete)
+
+  return userDel
 }
 
 module.exports = {
   createUser,
   user,
-  userPut
+  userPut,
+  userGeneral,
+  userDelete
 }
