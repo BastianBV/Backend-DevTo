@@ -8,7 +8,22 @@ const createUser = async (userData) => {
   return user
 }
 
+const user = async(userId) =>{
+    
+  const userFound = await User.findById(userId)
+  return userFound
+}
+
+const userPut = async(iduserUpdated,bodyuserUpdated)=>{
+  const hashpassword= await bcrypt.hash(bodyuserUpdated.password, 10)
+
+  const userUpdate = await User.findByIdAndUpdate(iduserUpdated,bodyuserUpdated,{returnDocument:"after",password: hashpassword})
+  
+  return userUpdate
+}
 
 module.exports = {
-  createUser
+  createUser,
+  user,
+  userPut
 }

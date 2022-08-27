@@ -8,6 +8,6 @@ const app = express()
 
 app.use(express.json())
 
-app.use("/user", routerUser)
+app.use("/users", routerUser)
 
 module.exports= app
