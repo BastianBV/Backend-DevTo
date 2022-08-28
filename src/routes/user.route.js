@@ -1,4 +1,5 @@
 const express = require("express")
+const auth = require("../middlewares/auth.middleware")
 const { createUser } = require("../useCase/user.userCase")
 
 const router = express.Router()

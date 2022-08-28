@@ -1,6 +1,6 @@
 const express = require("express")
 const { create } = require("../useCase/post.userCase")
-
+const auth = require("../middlewares/auth.middleware")
 const router = express.Router()
 
 
