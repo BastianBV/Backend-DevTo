@@ -13,10 +13,7 @@ const{
     DB_NAME,
 } = process.env
 
-console.log("DB_USERNAME,",DB_USERNAME)
-console.log("DB_PASSWORD,",DB_PASSWORD)
-console.log("DB_HOST,    ",DB_HOST)
-console.log("DB_NAME,    ",DB_NAME)
+
 
 
 const url = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}${DB_NAME}`

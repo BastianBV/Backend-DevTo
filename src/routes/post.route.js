@@ -30,7 +30,7 @@ router.post("/", async (request, response) => {
   }
 })
 // Reactions (LIKES, UNICORN, SAVE) -- BASTIAN 
-router.patch("/:id", async (request, response) =>{
+router.patch("/:id/likes", async (request, response) =>{
   const { params } = request;
   try{
     const updateLikes = await updateReactions(params.id)
@@ -57,7 +57,7 @@ router.get('/',getAllPosts);
 
 router.get('/:id',getSinglePost);
 
-router.post('/:id',updatePost);
+router.patch('/:id',updatePost);
 
 
 
