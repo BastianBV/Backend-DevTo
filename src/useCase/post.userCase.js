@@ -15,7 +15,7 @@ const getAllPosts = async(request,response) =>{
 
 const getSinglePost= async(request,response) =>{
     const {id} = request.params;
-    console.log("ïd", id)
+   console.log("id", id)
     const post = await Post.findById(id);
     response.json({
         post
@@ -27,7 +27,7 @@ const updatePost = async(request, response)=>{
     const{id} = request.params;
 
     const{ author, ...resto} = request.body;
-    console.log(resto)
+
     const post2Modify = await Post.findByIdAndUpdate(id,resto, {returnDocument:"after"});
 
     response.json({
@@ -44,9 +44,13 @@ const updateReactions = async (id) =>{
 }
 
 
+
 const eliminate = (postDelete) =>{
 
-    const post = Post.findByIdAndDelete(postDelete)
+
+    const post = Post.delete(postData)
+
+    const postdelete = Post.findByIdAndDelete(postDelete)
     return post
 }
 module.exports = {
