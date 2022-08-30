@@ -25,7 +25,7 @@ router.post("/", async (request, response) => {
   }
 })
 // Reactions (LIKES, UNICORN, SAVE) -- BASTIAN 
-router.patch("/:id", async (request, response) =>{
+router.patch("/:id", auth,  async (request, response) =>{
   const { params } = request;
   try{
     const updateLikes = await updateReactions(params.id)

@@ -14,7 +14,7 @@ const auth = (request, response, next) => {
         })
     }
 
-    next()
+    
 }
 
-module.exports = { auth }
+module.exports =  auth 

@@ -35,11 +35,11 @@ const postSchema = new mongoose.Schema({
     },
     author: {
         type: String,
-        required: true
+        
     },
     startDate: {
         type: Date,
-        required: true
+        
     },
   
 
