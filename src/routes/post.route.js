@@ -10,11 +10,7 @@ const { updateReactions,  updateLike} = require("../useCase/post.userCase");
 const auth = require("../middlewares/auth.middleware");
 const router = express.Router();
 
-  eliminate
-} = require("../useCase/post.userCase")
-const { updateReactions } = require ("../useCase/post.userCase")
-const auth = require("../middlewares/auth.middleware")
-const router = express.Router()
+
 
 
 router.post("/", async (request, response) => {

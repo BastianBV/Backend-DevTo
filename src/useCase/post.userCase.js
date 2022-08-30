@@ -52,9 +52,6 @@ const updateLike = async (id) =>{
     const delLike = await Post.findByIdAndUpdate(id, post)
     return delLike
 }
-const eliminate = (postDelete) =>{
-
-    const post = Post.findByIdAndDelete(postDelete)
 
 
 
