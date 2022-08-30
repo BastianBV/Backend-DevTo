@@ -50,16 +50,9 @@ router.patch("/:id", async (request, response) =>{
   }
 })
 
-
-
-
 router.get('/',getAllPosts);
 
 router.get('/:id',getSinglePost);
 
 router.post('/:id',updatePost);
-
-
-
-
 module.exports = router
