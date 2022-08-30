@@ -21,6 +21,9 @@ const postSchema = new mongoose.Schema({
        likes:{
         type: Number
        },
+       likeId:{
+        type: String
+       },
        unicorn:{
         type: Number
        },

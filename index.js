@@ -11,6 +11,17 @@ const{
 } = process.env
 
 
+
+
+const{
+    DB_USERNAME,
+    DB_PASSWORD,
+    DB_HOST,
+    DB_NAME,
+} = process.env
+
+
+
 const url = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}${DB_NAME}`
 
 mongoose.connect(url)
