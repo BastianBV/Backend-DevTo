@@ -7,6 +7,7 @@ const create = (postData) => {
 
 const getAllPosts = async(request,response) =>{
     const posts = await Post.find();
+    console.log("posts", posts)
     response.json({
         posts
     });
@@ -14,7 +15,8 @@ const getAllPosts = async(request,response) =>{
 
 const getSinglePost= async(request,response) =>{
     const {id} = request.params;
-    const post = await Post.findOne({id});
+    console.log("ïd", id)
+    const post = await Post.findById(id);
     response.json({
         post
     });
@@ -25,8 +27,8 @@ const updatePost = async(request, response)=>{
     const{id} = request.params;
 
     const{ author, ...resto} = request.body;
-    
-    const post2Modify = await Post.findByIdAndUpdate(id,resto);
+    console.log(resto)
+    const post2Modify = await Post.findByIdAndUpdate(id,resto, {returnDocument:"after"});
 
     response.json({
         msg: 'UPDATING THE POST',
@@ -41,11 +43,24 @@ const updateReactions = async (id) =>{
     return postReactions
 }
 
+const updateLike = async (id) =>{
+    const post = await Post.findById(id)
+    post.reactions.likes -= 1
+    const delLike = await Post.findByIdAndUpdate(id, post)
+    return delLike
+}
+const eliminate = (postDelete) =>{
+
+    const post = Post.findByIdAndDelete(postDelete)
+    return post
+}
 module.exports = {
     create,
     updateReactions,
+    updateLike,
     create,
     getAllPosts,
     getSinglePost,
-    updatePost
+    updatePost,
+    eliminate
   }
