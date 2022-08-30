@@ -18,7 +18,15 @@ const postSchema = new mongoose.Schema({
 
     },
     reactions: {
-        type: String,
+       likes:{
+        type: Number
+       },
+       unicorn:{
+        type: Number
+       },
+       save:{
+        type: Number
+       }
 
     },
     comments: {
