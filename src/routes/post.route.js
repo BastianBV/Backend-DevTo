@@ -1,5 +1,10 @@
 const express = require("express")
-const { create } = require("../useCase/post.userCase")
+const { 
+  create,
+  getAllPosts,
+  getSinglePost,
+  updatePost 
+} = require("../useCase/post.userCase")
 const { updateReactions } = require ("../useCase/post.userCase")
 const auth = require("../middlewares/auth.middleware")
 const router = express.Router()
@@ -44,4 +49,17 @@ router.patch("/:id", async (request, response) =>{
     })
   }
 })
+
+
+
+
+router.get('/',getAllPosts);
+
+router.get('/:id',getSinglePost);
+
+router.post('/:id',updatePost);
+
+
+
+
 module.exports = router
