@@ -69,8 +69,6 @@ router.delete("/:id", async (request, response) => {
   }
 })
 
-
-
 router.get('/',getAllPosts);
 
 router.get('/:id',getSinglePost);
