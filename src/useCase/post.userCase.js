@@ -7,7 +7,7 @@ const create = (postData) => {
 
 const getAllPosts = async(request,response) =>{
     const posts = await Post.find();
-    console.log("posts", posts)
+    
     response.json({
         posts
     });
@@ -15,7 +15,7 @@ const getAllPosts = async(request,response) =>{
 
 const getSinglePost= async(request,response) =>{
     const {id} = request.params;
-    console.log("ïd", id)
+    
     const post = await Post.findById(id);
     response.json({
         post
@@ -23,11 +23,11 @@ const getSinglePost= async(request,response) =>{
 };
 
 const updatePost = async(request, response)=>{
-    console.log('updating repo .....');
+    
     const{id} = request.params;
 
     const{ author, ...resto} = request.body;
-    console.log(resto)
+    
     const post2Modify = await Post.findByIdAndUpdate(id,resto, {returnDocument:"after"});
 
     response.json({
