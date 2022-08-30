@@ -3,7 +3,8 @@ const {
   create,
   getAllPosts,
   getSinglePost,
-  updatePost 
+  updatePost,
+  eliminate
 } = require("../useCase/post.userCase")
 const { updateReactions } = require ("../useCase/post.userCase")
 const auth = require("../middlewares/auth.middleware")
@@ -50,6 +51,23 @@ router.patch("/:id/likes", async (request, response) =>{
   }
 })
 
+router.delete("/:id", async (request, response) => {
+  const { params } = request
+  try{
+    const user = await eliminate(params.id)
+    response.status(201)
+    response.json({
+      success: true
+     
+    })
+  }catch(error){
+    response.status(400)
+    response.json({
+      success: false,
+      message: error.message
+    })
+  }
+})
 
 
 

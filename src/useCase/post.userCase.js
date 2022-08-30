@@ -46,7 +46,7 @@ const updateReactions = async (id) =>{
 
 const eliminate = (postDelete) =>{
 
-    const post = Post.delete(postData)
+    const post = Post.findByIdAndDelete(postDelete)
     return post
 }
 module.exports = {
@@ -55,5 +55,6 @@ module.exports = {
     create,
     getAllPosts,
     getSinglePost,
-    updatePost
+    updatePost,
+    eliminate
   }
