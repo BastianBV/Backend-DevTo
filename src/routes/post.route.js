@@ -10,6 +10,13 @@ const { updateReactions,  updateLike} = require("../useCase/post.userCase");
 const auth = require("../middlewares/auth.middleware");
 const router = express.Router();
 
+  eliminate
+} = require("../useCase/post.userCase")
+const { updateReactions } = require ("../useCase/post.userCase")
+const auth = require("../middlewares/auth.middleware")
+const router = express.Router()
+
+
 router.post("/", async (request, response) => {
   const { body } = request;
   try {
@@ -68,8 +75,14 @@ router.patch("/:id/removelikes", async (request, response) => {
       message: error.message,
     });
   }
+
 });
 router.delete("/:id", async (request, response) => {
+
+})
+// Reactions (LIKES, UNICORN, SAVE) -- BASTIAN 
+router.patch("/:id/likes", async (request, response) =>{
+
   const { params } = request;
   try {
     const user = await eliminate(params.id);
@@ -90,8 +103,34 @@ router.get("/", getAllPosts);
 
 router.get("/:id", getSinglePost);
 
+
 router.post("/:id", updatePost);
+
+router.delete("/:id", async (request, response) => {
+  const { params } = request
+  try{
+    const user = await eliminate(params.id)
+    response.status(201)
+    response.json({
+      success: true
+     
+    })
+  }catch(error){
+    response.status(400)
+    response.json({
+      success: false,
+      message: error.message
+    })
+  }
+})
 
 router.patch("/:id", updatePost);
 
+
 module.exports = router;
+
+
+
+
+
+
