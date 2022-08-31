@@ -18,3 +18,8 @@ Extras:
 <!-- - Endpoint de agregar like. -->
 - Endpoint de quitar like.
 - Filtrado de posts
+
+Como developer:
+- ejecutar: $npm install 
+- ejecutar: $npm install dotenv
+- ejecutar: $npm install express-validator
