@@ -38,11 +38,16 @@ const updatePost = async(request, response)=>{
     })
 } 
 
-const updateReactions = async (id) =>{
+const updateReactions = async (id, userId) =>{
     const post = await Post.findById(id)
-    post.reactions.likes += 1
-    const postReactions = await Post.findByIdAndUpdate(id, post)
-    return postReactions
+    console.log('userId', userId)
+    console.log('postantes', post)
+    post.reactions.likes.push(userId)
+    console.log('postdespues', post)
+
+    post.save();
+    // const postReactions = await Post.findByIdAndUpdate(id, post)
+    return post
 }
 
 

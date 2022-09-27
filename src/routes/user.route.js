@@ -73,7 +73,6 @@ router.put("/:id", async (request, response) => {
   }
 })
 
-
 router.get("/",async(request,response)=>{
   const {params} = request
   try{
@@ -93,6 +92,7 @@ router.get("/",async(request,response)=>{
     })
   }
 })
+
 
 router.delete("/:id",async(request,response)=>{
   const {params} = request

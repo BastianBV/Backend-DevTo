@@ -19,7 +19,10 @@ const postSchema = new mongoose.Schema({
     },
     reactions: {
        likes:{
-        type: Number
+        type:[ {
+            userId: Number
+
+        }]
        },
        likeId:{
         type: String

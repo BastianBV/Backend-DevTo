@@ -33,10 +33,10 @@ router.post("/", async (request, response) => {
   }
 });
 // Reactions (LIKES, UNICORN, SAVE) -- BASTIAN
-router.patch("/:id/likes", async (request, response) => {
-  const { params } = request;
+router.patch("/:id/likes",auth, async (request, response) => {
+  const { params, headers } = request;
   try {
-    const updateLikes = await updateReactions(params.id);
+    const updateLikes = await updateReactions(params.id, headers.userId);
     response.status(201);
     response.json({
       success: true,
@@ -73,9 +73,6 @@ router.patch("/:id/removelikes", async (request, response) => {
   }
 
 });
-router.delete("/:id", async (request, response) => {
-
-})
 // Reactions (LIKES, UNICORN, SAVE) -- BASTIAN 
 router.patch("/:id/likes", async (request, response) =>{
 
@@ -95,14 +92,7 @@ router.patch("/:id/likes", async (request, response) =>{
   }
 });
 
-router.get("/", getAllPosts);
-
-router.get("/:id", getSinglePost);
-
-
-router.post("/:id", updatePost);
-
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", auth, async (request, response) => {
   const { params } = request
   try{
     const user = await eliminate(params.id)
@@ -119,14 +109,12 @@ router.delete("/:id", async (request, response) => {
     })
   }
 })
+router.get("/", getAllPosts);
 
-router.patch("/:id", updatePost);
+router.get("/:id", getSinglePost);
+
+
+router.patch("/:id", auth, updatePost);
 
 
 module.exports = router;
-
-
-
-
-
-

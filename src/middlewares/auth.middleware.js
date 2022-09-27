@@ -4,7 +4,8 @@ const auth = (request, response, next) => {
     try {
         const authorization = request.headers.authorization || ""
         const token = authorization.replace("Bearer ", "")
-        jwt.verify(token)
+        let user = jwt.verify(token) 
+        request.headers.userId = user.id
         next()
     } catch (error) {
         response.status(401)
@@ -14,7 +15,6 @@ const auth = (request, response, next) => {
         })
     }
 
-    next()
 }
 
-module.exports = { auth }
+module.exports =  auth 
