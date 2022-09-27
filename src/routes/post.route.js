@@ -1,4 +1,7 @@
 const express = require("express");
+
+const {check} = require('express-validator');
+
 const {
   create,
   getAllPosts,
@@ -7,10 +10,12 @@ const {
   eliminate,
 } = require("../useCase/post.userCase");
 const { updateReactions,  updateLike} = require("../useCase/post.userCase");
-const auth = require("../middlewares/auth.middleware");
+const {
+  auth,
+  validarCampos,
+  existePostId
+} = require("../middlewares/auth.middleware");
 const router = express.Router();
-
-
 
 
 router.post("/", async (request, response) => {
@@ -92,7 +97,20 @@ router.patch("/:id/likes", async (request, response) =>{
   }
 });
 
-router.delete("/:id", auth, async (request, response) => {
+router.get("/", getAllPosts);
+
+router.get("/:id",[
+  check('id','No es un ID válido').isMongoId(),
+  check('id').custom(existePostId),
+  validarCampos], getSinglePost);
+
+router.post("/:id",[
+  check('id','No es un ID válido').isMongoId(),
+  check('id').custom(existePostId),
+  validarCampos
+],updatePost);
+
+router.delete("/:id", async (request, response) => {
   const { params } = request
   try{
     const user = await eliminate(params.id)
